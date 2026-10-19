@@ -49,6 +49,7 @@
         "index.d.ts",
         "index.js",
         "index.js.flow",
+        "PdfRenderer.js",
         "PdfManager.js",
         "PdfPageView.js",
         "PdfView.js",
