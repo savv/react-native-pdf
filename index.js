@@ -7,12 +7,35 @@
  */
 
 'use strict';
+import PropTypes from 'prop-types';
 import {Image} from 'react-native';
 import ReactNativeBlobUtil from 'react-native-blob-util';
 import PdfRenderer from './PdfRenderer';
 const SHA1 = require('crypto-js/sha1');
 
 export default class Pdf extends PdfRenderer {
+
+    static propTypes = {
+        ...PdfRenderer.propTypes,
+        source: PropTypes.oneOfType([
+            PropTypes.shape({
+                uri: PropTypes.string,
+                cache: PropTypes.bool,
+                cacheFileName: PropTypes.string,
+                expiration: PropTypes.number,
+            }),
+            // Opaque type returned by require('./test.pdf')
+            PropTypes.number,
+        ]).isRequired,
+        trustAllCerts: PropTypes.bool,
+        transformFile: PropTypes.bool,
+    };
+
+    static defaultProps = {
+        ...PdfRenderer.defaultProps,
+        trustAllCerts: true,
+        transformFile: false,
+    };
 
     constructor(props) {
         super(props);

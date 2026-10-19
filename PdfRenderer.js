@@ -28,16 +28,6 @@ const getPdfView = () => {
 export default class PdfRenderer extends Component {
 
     static propTypes = {
-        source: PropTypes.oneOfType([
-            PropTypes.shape({
-                uri: PropTypes.string,
-                cache: PropTypes.bool,
-                cacheFileName: PropTypes.string,
-                expiration: PropTypes.number,
-            }),
-            // Opaque type returned by require('./test.pdf')
-            PropTypes.number,
-        ]).isRequired,
         page: PropTypes.number,
         scale: PropTypes.number,
         minScale: PropTypes.number,
@@ -55,9 +45,7 @@ export default class PdfRenderer extends Component {
         enablePaging: PropTypes.bool,
         enableRTL: PropTypes.bool,
         fitPolicy: PropTypes.number,
-        trustAllCerts: PropTypes.bool,
         singlePage: PropTypes.bool,
-        transformFile: PropTypes.bool,
         onLoadComplete: PropTypes.func,
         onPageChanged: PropTypes.func,
         onError: PropTypes.func,
@@ -94,10 +82,8 @@ export default class PdfRenderer extends Component {
         scrollEnabled: true,
         enablePaging: false,
         enableRTL: false,
-        trustAllCerts: true,
         usePDFKit: true,
         singlePage: false,
-        transformFile: false,
         onLoadProgress: (percent) => {
         },
         onLoadComplete: (numberOfPages, path) => {
